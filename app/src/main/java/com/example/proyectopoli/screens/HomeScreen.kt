@@ -9,6 +9,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -55,10 +56,12 @@ fun HomeScreen(navController: NavHostController) {
 
         // Botón para ir al perfil
         Button(
-            onClick = { navController.navigate("login") }, // Navega a la pantalla de perfil
+            onClick = { navController.navigate("login") },
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF9575CD)),// Navega a la pantalla de perfil
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 32.dp)
+
         ) {
             Text(text = "Ir Ya !!!")
         }

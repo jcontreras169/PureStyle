@@ -37,7 +37,7 @@ fun PerfilFragment() {
                     .background(Color(0xFFE8DAFF)),
                 contentAlignment = Alignment.Center
             ) {
-                Text("N", fontWeight = FontWeight.Bold, color = Color(0xFF5E35B1))
+                Text("J", fontWeight = FontWeight.Bold, color = Color(0xFF5E35B1))
             }
 
             Spacer(modifier = Modifier.width(12.dp))
@@ -52,7 +52,7 @@ fun PerfilFragment() {
 
         // Avatar grande
         Image(
-            painter = painterResource(id = R.drawable.avatar), // usa tu recurso real aquí
+            painter = painterResource(id = R.drawable.avatar),
             contentDescription = "Avatar",
             modifier = Modifier
                 .size(200.dp)
@@ -100,7 +100,7 @@ fun PerfilFragment() {
             Button(
                 onClick = { /* TODO */ },
                 shape = RoundedCornerShape(16.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF6A5ACD))
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF9575CD)),
             ) {
                 Text("Guardar")
             }

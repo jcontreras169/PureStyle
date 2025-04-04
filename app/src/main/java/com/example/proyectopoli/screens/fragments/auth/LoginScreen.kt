@@ -7,6 +7,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -70,6 +71,7 @@ fun LoginScreen(navController: NavHostController) {
             onClick = {
                 navController.navigate("menuhome")
             },
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF9575CD)),
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Iniciar sesión")
@@ -80,7 +82,9 @@ fun LoginScreen(navController: NavHostController) {
         // Botón para ir a registro
         TextButton(onClick = {
             navController.navigate("register") // Navegar a la pantalla de registro
-        }) {
+        },
+
+            ) {
             Text("¿No tienes una cuenta? Regístrate")
         }
     }
@@ -89,5 +93,5 @@ fun LoginScreen(navController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen(navController = rememberNavController()) // Añadimos un NavController para previsualizar
+    LoginScreen(navController = rememberNavController())
 }
