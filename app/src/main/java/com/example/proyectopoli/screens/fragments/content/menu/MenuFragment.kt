@@ -20,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
 import com.example.proyectopoli.model.MenuItem
 import com.example.proyectopoli.ui.theme.components.DrawerItem
 
@@ -41,7 +40,7 @@ fun MenuFragment(
         modifier = Modifier.fillMaxSize()
     ) {
         Text(
-            text = "ProyectoPOLI",
+            text = "PureStyle",
             style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center,

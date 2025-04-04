@@ -78,7 +78,7 @@ fun PerfilFragment() {
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+            text = "No olvides revisar y actualizar tu información personal en caso de ser requerido",
             color = Color.Gray,
             fontSize = 14.sp
         )
