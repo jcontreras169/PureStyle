@@ -5,7 +5,7 @@ import androidx.navigation.NavHostController
 import com.example.proyectopoli.screens.fragments.content.BotonesFragment
 import com.example.proyectopoli.screens.fragments.content.FotosFragment
 import com.example.proyectopoli.screens.fragments.content.PerfilFragment
-import com.example.proyectopoli.screens.fragments.content.VideosFragment
+import com.example.proyectopoli.screens.fragments.content.menu.VideosFragment
 import com.example.proyectopoli.screens.fragments.content.WebFragment
 
 @Composable
