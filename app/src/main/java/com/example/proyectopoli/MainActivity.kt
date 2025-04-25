@@ -18,6 +18,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.example.proyectopoli.viewmodel.UserViewModel
 import com.example.proyectopoli.ui.theme.ProyectoPOLITheme
 
 
@@ -31,6 +32,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
+                    val userViewModel = remember { UserViewModel() }
 
                     // ✅ Asegúrate de tener estos imports arriba
                     // import androidx.compose.runtime.*
@@ -41,16 +43,17 @@ class MainActivity : ComponentActivity() {
                             HomeScreen(navController)
                         }
                         composable("login") {
-                            LoginScreen(navController)
+                            LoginScreen(navController, userViewModel)
                         }
                         composable("register") {
-                            RegisterScreen(navController)
+                            RegisterScreen(navController, userViewModel)
                         }
                         composable("menuhome") {
                             MenuHomeScreen(
                                 navController = navController,
                                 selectedOption = selectedOption,
-                                onOptionSelected = { selectedOption = it }
+                                onOptionSelected = { selectedOption = it },
+                                userViewModel = userViewModel
                             )
                         }
                     }

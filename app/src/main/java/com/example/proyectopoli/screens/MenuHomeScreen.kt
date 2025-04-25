@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.example.proyectopoli.navigation.ContentNavigation
 import com.example.proyectopoli.screens.fragments.content.menu.MenuFragment
+import com.example.proyectopoli.viewmodel.UserViewModel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -30,7 +31,8 @@ import kotlinx.coroutines.launch
 fun MenuHomeScreen(
     navController: NavHostController,
     selectedOption: String,
-    onOptionSelected: (String) -> Unit
+    onOptionSelected: (String) -> Unit,
+    userViewModel: UserViewModel
 ) {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -79,7 +81,7 @@ fun MenuHomeScreen(
                     .padding(paddingValues),
                 color = MaterialTheme.colorScheme.background
             ) {
-                ContentNavigation(navController = navController, selectedOption = selectedOption)
+                ContentNavigation(navController = navController, selectedOption = selectedOption, userViewModel = userViewModel)
             }
         }
     }

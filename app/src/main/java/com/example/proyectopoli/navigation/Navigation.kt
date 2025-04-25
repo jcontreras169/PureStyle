@@ -7,15 +7,16 @@ import com.example.proyectopoli.screens.fragments.content.FotosFragment
 import com.example.proyectopoli.screens.fragments.content.PerfilFragment
 import com.example.proyectopoli.screens.fragments.content.menu.VideosFragment
 import com.example.proyectopoli.screens.fragments.content.WebFragment
+import com.example.proyectopoli.viewmodel.UserViewModel
 
 @Composable
-fun ContentNavigation(navController: NavHostController, selectedOption: String) {
+fun ContentNavigation(navController: NavHostController, selectedOption: String, userViewModel: UserViewModel) {
     when (selectedOption) {
-        "perfil" -> PerfilFragment()
+        "perfil" -> PerfilFragment(userViewModel)
         "fotos" -> FotosFragment()
         "videos" -> VideosFragment()
         "web" -> WebFragment()
         "botones" -> BotonesFragment()
-        else -> PerfilFragment()
+        else -> PerfilFragment(userViewModel)
     }
 }

@@ -17,11 +17,15 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectopoli.R
+import com.example.proyectopoli.viewmodel.UserViewModel
+import android.widget.Toast
+import androidx.compose.ui.platform.LocalContext
 
 @Composable
-fun LoginScreen(navController: NavHostController) {
+fun LoginScreen(navController: NavHostController, userViewModel: UserViewModel) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -69,7 +73,11 @@ fun LoginScreen(navController: NavHostController) {
         // Botón login
         Button(
             onClick = {
+                if (email == userViewModel.email.value && password == userViewModel.password.value) {
                 navController.navigate("menuhome")
+                } else {
+                    Toast.makeText(context, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+                }
             },
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF9575CD)),
             modifier = Modifier.fillMaxWidth()
@@ -93,5 +101,9 @@ fun LoginScreen(navController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun LoginScreenPreview() {
-    LoginScreen(navController = rememberNavController())
+    val dummyViewModel = UserViewModel()
+    LoginScreen(
+        navController = rememberNavController(),
+        userViewModel = dummyViewModel
+    )
 }

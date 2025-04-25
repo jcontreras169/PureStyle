@@ -19,9 +19,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.proyectopoli.R
+import android.widget.Toast
+import androidx.compose.ui.platform.LocalContext
+import com.example.proyectopoli.viewmodel.UserViewModel
 
 @Composable
-fun RegisterScreen(navController: NavHostController) {
+fun RegisterScreen(navController: NavHostController, userViewModel: UserViewModel) {
     var nombres by remember { mutableStateOf("") }
     var apellidos by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -35,6 +38,7 @@ fun RegisterScreen(navController: NavHostController) {
     var aceptaTerminos by remember { mutableStateOf(false) }
     var aceptaPrivacidad by remember { mutableStateOf(false) }
 
+    val context = LocalContext.current
     val scrollState = rememberScrollState()
 
     Column(
@@ -166,7 +170,31 @@ fun RegisterScreen(navController: NavHostController) {
             // Botón confirmar
             Button(
                 onClick = {
-                    navController.navigate("login")
+                    // Validación de campos
+                    if (nombres.isBlank() || apellidos.isBlank() || email.isBlank() || telefono.isBlank() ||
+                        pais.isBlank() || sexo.isBlank() || direccion.isBlank() || password.isBlank() || confirmPassword.isBlank()
+                    ) {
+                        Toast.makeText(context, "Todos los campos deben ser llenados", Toast.LENGTH_SHORT).show()
+                    } else if (password != confirmPassword) {
+                        Toast.makeText(context, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+                    } else if (!aceptaTerminos || !aceptaPrivacidad) {
+                        Toast.makeText(context, "Debes aceptar términos y políticas", Toast.LENGTH_SHORT).show()
+                    } else {
+                        // Guardamos en el ViewModel
+                        userViewModel.name.value = nombres
+                        userViewModel.lastName.value = apellidos
+                        userViewModel.email.value = email
+                        userViewModel.password.value = password
+                        userViewModel.phone.value = telefono
+                        userViewModel.gender.value = sexo
+                        userViewModel.country.value = pais
+                        userViewModel.address.value = direccion
+
+                        Toast.makeText(context, "¡Registro exitoso!", Toast.LENGTH_SHORT).show()
+
+                        // Navegamos al login
+                        navController.navigate("login")
+                    }
                 },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF9575CD)),
                 modifier = Modifier
@@ -181,5 +209,9 @@ fun RegisterScreen(navController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun RegisterScreenPreview() {
-    RegisterScreen(navController = rememberNavController())
+    val dummyViewModel = UserViewModel()
+    RegisterScreen(
+        navController = rememberNavController(),
+        userViewModel = dummyViewModel
+    )
 }
